@@ -1,0 +1,184 @@
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:stella="http://stella.caelum.com.br/faces2"
+                xmlns:p="http://primefaces.org/ui"
+                template="/WEB-INF/template1.xhtml">
+
+
+    <ui:define name="content">
+
+        <h:form id="form" style="min-height: 100vh">
+            <p:messages globalOnly="true" closable="true"/>
+
+
+
+            <div class="p-grid" style="width: 100% !important;">
+                <div class="p-col-12">
+                    <div class="card card-w-title" style="width: 100% !important;">
+
+                        <div id="introduction" style="margin-left: auto; margin-right: auto; text-align: center; color: #EA2B81; margin-bottom: 20px">
+                            <p:graphicImage name="tamb.jpeg" library="imagens" class="logo" style="border-radius: 10px;"/>
+                        </div>
+
+
+                        <h:panelGroup class="none" rendered="#{!indexMB.exibirFormulario}" style="width: 100%">
+                            <div class="card card-w-title" style="margin-top: 40px;">
+
+                                <div class="p-grid ui-fluid form-group" >
+                                    <div class="p-col-12">
+                                        <div style="margin-left: 20px; color: #353d7f">
+                                            <h2 style="text-align: center">Palestrantes do evento</h2>
+                                        </div>
+                                    </div>
+
+                                    <div class="p-col-12 p-md-6 p-sm-6">
+                                        <center>
+                                            <p:graphicImage name="convidado1.png" class="participantes" library="imagens" style="border-radius: 10px;" />
+                                        </center>
+                                    </div>
+                                    <div class="p-col-12 p-md-6 p-sm-6">
+                                        <center>
+                                            <p:graphicImage name="convidado2.png" class="participantes" library="imagens" style="border-radius: 10px;"/>
+                                        </center>
+                                    </div>
+                                    <div class="p-col-12 p-md-6 p-sm-6">
+                                        <center>
+                                            <p:graphicImage name="convidado3.png" class="participantes" library="imagens" style="border-radius: 10px;"/>
+                                        </center>
+                                    </div>
+                                    <div class="p-col-12 p-md-6 p-sm-6">
+                                        <center>
+                                            <p:graphicImage name="convidado4.png" class="participantes" library="imagens" style="border-radius: 10px;"/>
+                                        </center>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </h:panelGroup>
+
+                        <h:panelGroup class="none" rendered="#{!indexMB.exibirFormulario}" style="width: 100%">
+                            <div class="card card-w-title" style="margin-top: 40px;">
+                                <div class="p-grid ui-fluid form-group" style="margin-top: 20px">
+                                    <div class="p-col-12 p-sm-6 ">
+                                        <p:commandButton value="INSCREVA-SE" icon="pi pi-fw pi-user" ajax="false" action="#{indexMB.exibirFormulario()}" style="width: 100%; height: 45px; "/>
+                                    </div>
+                                    <div class="p-col-12 p-sm-6">
+                                        <p:button href="programacao.xhtml" value="VEJA A PROGRAMAÇÃO" icon="pi pi-fw pi-search" style="width: 100%; height: 45px; "/>
+                                    </div>
+                                </div>
+                            </div>
+                        </h:panelGroup>
+
+                        <!-- OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO000000000000O PAINEL DO SOLICITANTE OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO-->
+                        <h:panelGroup rendered="#{indexMB.exibirFormulario}">
+                            <div class="card card-w-title">
+                                <div style="margin-left: 20px;">Preencha o cadastro:</div>
+                                <div class="p-grid ui-fluid form-group">
+
+                                    <div class="p-col-12 p-offset">
+                                        <p:message for="idNome" showSummary="true" showDetail="false"/>
+                                    </div>
+
+                                    <div class="p-col-12 p-md-4">
+                                        	<span class="ui-float-label">
+                                                <p:inputText  id="idNome" value="#{indexMB.ouvinte.nome}" converter="upper" required="true" requiredMessage="Campo obrigatório!"/>
+                                                <p:outputLabel  value="Nome completo: *" />
+                                           	</span>
+                                    </div>
+						
+                                    <div class="p-col-12 p-md-4">
+                                        <p:selectOneMenu value="#{indexMB.ouvinte.sexo}">
+                                        	<f:selectItem itemLabel="Selecione o Sexo:" itemValue="" />
+                                            <f:selectItem itemLabel="FEMININO" itemValue="FEMININO"/>
+                                            <f:selectItem itemLabel="MASCULINO" itemValue="MASCULINO"/>
+                                            <f:selectItem itemLabel="OUTRO" itemValue="OUTRO"/>
+                                        </p:selectOneMenu>
+                                    </div>
+
+                                    <div class="p-col-12 p-md-4">
+                                    		<span class="ui-float-label">
+                                        	<p:inputMask value="#{indexMB.ouvinte.dataNascimento}" mask="99/99/9999" />
+                                        	<p:outputLabel  value="Data de nascimento:" />
+                                        	</span>
+                                       
+                                    </div>
+
+                                    <div class="p-col-12 p-offset">
+                                        <p:message for="idTelefone" showSummary="true" showDetail="false"/>
+                                    </div>
+                                    
+
+                                    <div class="p-col-12 p-md-4">
+                                        	<span class="ui-float-label">
+                                            <p:inputMask id="idTelefone" value="#{indexMB.ouvinte.telefone}" mask="(99) 99999-9999" required="true" requiredMessage="Campo obrigatório"/>
+											<p:outputLabel  value="Telefone: *" />
+											</span>
+                                    </div>
+
+                                    <div class="p-col-12 p-md-4">
+                                        	<span class="ui-float-label">
+                                                <p:inputText id="idEmail" value="#{indexMB.ouvinte.email}" validatorMessage="O e-mail digitado não está dentro do padrão!">
+                                                    <f:validateRegex pattern="(^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$)|()" />
+                                                </p:inputText> 
+                                                <p:outputLabel  value="E-mail: (não deixe espaço em branco no final)" />
+                                            </span>
+                                    </div>
+
+                                    <div class="p-col-12 p-md-4">
+                                        	<span class="ui-float-label">
+                                                <p:inputText value="#{indexMB.ouvinte.redeSocial}"/>
+                                                <p:outputLabel  value="Rede social:" />
+                                            </span>    
+                                    </div>
+
+                                    <div class="p-col-12 p-offset">
+                                        <p:message for="idInstituicao" showSummary="true" showDetail="false"/>
+                                    </div>
+                                    
+                                    <div class="p-col-12 p-md-6">
+                                    	<span class="ui-float-label">    
+                                        	<p:inputText id="idInstituicao" value="#{indexMB.ouvinte.instituicao}" rendered="true" required="true" requiredMessage="Campo obrigatório!"/>
+                                            <p:outputLabel  value="Instituição: *" />
+                                        </span>   
+                                    </div>
+                                    <div class="p-col-12 p-md-6">
+                                    	<span class="ui-float-label">    
+                                    		<p:inputText value="#{indexMB.ouvinte.profissao}"/>
+                                            <p:outputLabel  value="Profissão: " />
+                                        </span>   
+                                    </div>
+                                    <div class="p-col-12">
+                                        <span class="ui-float-label"> 
+                                    		<p:inputText  value="#{indexMB.ouvinte.conhecimento}" />
+                                            <p:outputLabel  value="Qual e seu conhecimento nesta área?:" />
+                                        </span>   
+                                    </div>
+                                </div>
+                            </div>
+                        </h:panelGroup>
+
+                        <!-- OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO000000000000O00000000000000000OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO-->
+                        <h:panelGroup rendered="#{indexMB.exibirFormulario}">
+                            <div class="card card-w-title">
+                                <div class="p-grid ui-fluid form-group">
+                                    <div class="p-col-12 p-md-12 p-lg-6"/>
+                                    <div class="p-col-12 p-md-6 p-lg-3">
+                                        <p:commandButton value="Salvar" action="#{indexMB.salvarOuvinte()}" ajax="false" icon="pi pi-fw pi-save" style="width: 100%"/>
+                                    </div>
+                                    <div class="p-col-12 p-md-6 p-lg-3">
+                                        <p:commandButton value="Cancelar" action="#{indexMB.cancelar()}" immediate="true" style="background-color: #F57F17; width: 100%" icon="pi pi-fw pi-times" />
+                                    </div>
+                                </div>
+                            </div>
+                        </h:panelGroup>
+                    </div>
+                </div>
+            </div>
+        </h:form>
+
+
+    </ui:define>
+</ui:composition>
